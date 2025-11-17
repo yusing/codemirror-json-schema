@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es2017",
+    "target": "esnext",
     "module": "ESNext",
     "outDir": "dist",
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "Node",
+    "moduleResolution": "bundler",
     "lib": ["ESNext", "DOM"],
     "declaration": true,
     "resolveJsonModule": true,

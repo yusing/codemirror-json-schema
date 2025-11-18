@@ -6,7 +6,9 @@
       "name": "codemirror-json-schema",
       "dependencies": {
         "@sagold/json-pointer": "^7.2.0",
+        "@shikijs/langs": "^3.15.0",
         "@shikijs/markdown-it": "^3.15.0",
+        "@shikijs/themes": "^3.15.0",
         "best-effort-json-parser": "^1.1.2",
         "json-schema": "^0.4.0",
         "json-schema-library": "^10.4.2",

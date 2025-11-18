@@ -1,7 +1,7 @@
 {
-  "name": "codemirror-json-schema",
+  "name": "codemirror-json-schema-refined",
   "license": "MIT",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "description": "Codemirror 6 extensions that provide full JSONSchema support for `@codemirror/lang-json` and `codemirror-json5`",
   "contributors": [
     {
@@ -11,6 +11,10 @@
     {
       "name": "Rikki Schulte",
       "url": "https://rikki.dev"
+    },
+    {
+      "name": "Yusing",
+      "url": "https://github.com/yusing"
     }
   ],
   "keywords": [
@@ -58,7 +62,9 @@
   "homepage": "https://codemirror-json-schema.netlify.app/",
   "dependencies": {
     "@sagold/json-pointer": "^7.2.0",
+    "@shikijs/langs": "^3.15.0",
     "@shikijs/markdown-it": "^3.15.0",
+    "@shikijs/themes": "^3.15.0",
     "best-effort-json-parser": "^1.1.2",
     "json-schema": "^0.4.0",
     "json-schema-library": "^10.4.2",
@@ -112,12 +118,12 @@
   },
   "scripts": {
     "dev": "vite ./dev --port 3000",
-    "build": "bun tsc && tsc --module commonjs --outDir cjs && vite build ./dev --outDir ../public --emptyOutDir",
+    "build": "bun tsc && bun tsc --module commonjs --outDir cjs && bun vite build ./dev --outDir ../public --emptyOutDir",
     "test": "vitest --dom",
     "test:coverage": "vitest run --dom --coverage ",
     "tsc": "tsc && bun replace:env",
     "version-packages": "changeset version && bun typedoc && bun prettier:write CHANGELOG.md && git add package.json bun-lock.yaml CHANGELOG.md",
-    "release": "bun build && changeset publish",
+    "release": "bun run build && changeset publish",
     "typedoc": "typedoc --out docs src/index.ts src/json5.ts && bun prettier:write docs/**/*",
     "prettier:write": "prettier --ignore-path .gitignore --write",
     "replace:env": "sh scripts/replace-env.sh"

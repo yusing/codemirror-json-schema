@@ -116,7 +116,7 @@
     "test:coverage": "vitest run --coverage",
     "tsc": "tsc && bun replace:env",
     "version-packages": "changeset version && bun typedoc && bun prettier:write CHANGELOG.md && git add package.json bun-lock.yaml CHANGELOG.md",
-    "release": "bun build && changeset publish",
+    "release": "bun run build && changeset publish",
     "typedoc": "typedoc --out docs src/index.ts src/json5.ts && bun prettier:write docs/**/*",
     "prettier:write": "prettier --ignore-path .gitignore --write",
     "replace:env": "sh scripts/replace-env.sh"

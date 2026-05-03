@@ -143,16 +143,12 @@ export class JSONValidation {
     // skip validation if parsing fails
     if (json.data == null) return [];
 
-    let errors: ValidateReturnType = {
-      valid: false,
-      errors: [],
-      errorsAsync: [],
-    };
+    let errors: ValidateReturnType | null = null;
     try {
       errors = this.schema.validate(json.data);
     } catch {}
     debug.log("xxx", "validation errors", errors, json.data);
-    if (errors.valid) return [];
+    if (!errors || errors.valid) return [];
     // reduce() because we want to filter out errors that don't have a pointer
     return errors.errors.reduce<Diagnostic[]>((acc, error) => {
       const pushRoot = () => {
@@ -172,16 +168,15 @@ export class JSONValidation {
       };
       const errorPath = getErrorPath(error);
       const pointer = json.pointers.get(errorPath) as JSONPointerData;
+      const errorIdentifier = typeof error.code === "string" ? error.code : "";
       if (
-        error.name === "MaxPropertiesError" ||
-        error.name === "MinPropertiesError" ||
+        errorIdentifier === "max-properties-error" ||
+        errorIdentifier === "min-properties-error" ||
         errorPath === "" // root level type errors
       ) {
         pushRoot();
       } else if (pointer) {
         // if the error is a property error, use the key position
-        const errorIdentifier =
-          typeof error.code === "string" ? error.code : "";
         const isKeyError =
           errorIdentifier !== "" && positionalErrors.has(errorIdentifier);
         const errorString = this.rewriteError(error);

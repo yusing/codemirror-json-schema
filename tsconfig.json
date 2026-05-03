@@ -3,6 +3,7 @@
     "target": "esnext",
     "module": "ESNext",
     "outDir": "dist",
+    "rootDir": ".",
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -17,7 +18,9 @@
     "paths": {
       "@*": ["./src/*"]
     },
-    "baseUrl": "./"
+    "baseUrl": "./",
+    "types": ["node"],
+    "ignoreDeprecations": "6.0"
   },
   "compileOnSave": true,
   "include": ["src/**/*"],

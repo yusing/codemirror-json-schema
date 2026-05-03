@@ -68,6 +68,118 @@ function isRealSchema(
   );
 }
 
+function flattenCandidateSchemas(
+  schema: JSONSchema7 | undefined,
+  rootSchema: JSONSchema7,
+): JSONSchema7[] {
+  if (!schema) {
+    return [];
+  }
+  const expanded = expandSchemaProperty(schema, rootSchema) as JSONSchema7;
+  const candidates = [expanded];
+  const compositeKeys = ["allOf", "anyOf", "oneOf"] as const;
+  for (const key of compositeKeys) {
+    const value = expanded[key];
+    if (Array.isArray(value)) {
+      for (const entry of value) {
+        const expandedEntry = expandSchemaProperty(entry, rootSchema);
+        if (typeof expandedEntry === "object" && expandedEntry != null) {
+          candidates.push(expandedEntry as JSONSchema7);
+        }
+      }
+    }
+  }
+  return candidates;
+}
+
+function getStaticSchemaCandidatesAtPointer(
+  rootSchema: JSONSchema7,
+  pointer: string | undefined,
+): JSONSchema7[] {
+  if (!pointer) {
+    return flattenCandidateSchemas(rootSchema, rootSchema);
+  }
+  const segments = pointer.split("/").filter(Boolean);
+  let currentSchemas = flattenCandidateSchemas(rootSchema, rootSchema);
+
+  for (const segment of segments) {
+    const nextSchemas: JSONSchema7[] = [];
+    const isArrayIndex = /^\d+$/.test(segment);
+
+    for (const candidate of currentSchemas) {
+      for (const schema of flattenCandidateSchemas(candidate, rootSchema)) {
+        if (isArrayIndex) {
+          const itemSchema = schema.items;
+          if (Array.isArray(itemSchema)) {
+            const indexed = itemSchema[Number(segment)];
+            if (typeof indexed === "object" && indexed != null) {
+              nextSchemas.push(...flattenCandidateSchemas(indexed, rootSchema));
+            }
+          } else if (typeof itemSchema === "object" && itemSchema != null) {
+            nextSchemas.push(
+              ...flattenCandidateSchemas(itemSchema, rootSchema),
+            );
+          }
+          continue;
+        }
+
+        const propertySchema = schema.properties?.[segment];
+        if (typeof propertySchema === "object" && propertySchema != null) {
+          nextSchemas.push(
+            ...flattenCandidateSchemas(propertySchema, rootSchema),
+          );
+        }
+      }
+    }
+
+    currentSchemas = nextSchemas;
+    if (currentSchemas.length === 0) {
+      return [];
+    }
+  }
+
+  return currentSchemas;
+}
+
+function getStaticSchemaAtPointer(
+  rootSchema: JSONSchema7,
+  pointer: string | undefined,
+): JSONSchema7 | undefined {
+  const candidates = getStaticSchemaCandidatesAtPointer(rootSchema, pointer);
+  if (candidates.length === 0) {
+    return undefined;
+  }
+  if (candidates.length === 1) {
+    return candidates[0];
+  }
+
+  const combined: JSONSchema7 = {};
+  const propertyEntries = candidates.flatMap((candidate) =>
+    Object.entries(candidate.properties ?? {}),
+  );
+  if (propertyEntries.length > 0) {
+    combined.properties = Object.fromEntries(propertyEntries);
+  }
+
+  const refs = candidates
+    .map((candidate) => candidate.$ref)
+    .filter((ref): ref is string => typeof ref === "string");
+  if (refs.length > 0) {
+    combined.oneOf = refs.map((ref) => ({ $ref: ref }));
+  } else {
+    combined.oneOf = candidates;
+  }
+
+  const description = candidates.find(
+    (candidate) => candidate.description,
+  )?.description;
+  if (description) {
+    combined.description = description;
+  }
+
+  return combined;
+}
+
 export class JSONCompletion {
   private originalSchema: JSONSchema7 | null = null;
   /**
@@ -131,6 +243,7 @@ export class JSONCompletion {
 
     const text = ctx.state.doc.sliceString(0);
     let node: SyntaxNode | null = getNodeAtPosition(ctx.state, ctx.pos);
+    const rawWord = getWord(ctx.state.doc, node, false);
 
     // position node word prefix (without quotes) for matching
     let prefix = ctx.state.sliceDoc(node.from, ctx.pos).replace(/^(["'])/, "");
@@ -143,14 +256,17 @@ export class JSONCompletion {
         isPrimitiveValueNode(node, this.mode) ||
         isPropertyNameNode(node, this.mode)
       ) &&
-      !ctx.explicit
+      !ctx.explicit &&
+      !(
+        this.mode === MODES.JSON5 &&
+        (rawWord.startsWith("'") || rawWord.startsWith('"'))
+      )
     ) {
       debug.log("xxx", "no completions for non-word/primitive", node);
       return result;
     }
 
     const currentWord = getWord(ctx.state.doc, node);
-    const rawWord = getWord(ctx.state.doc, node, false);
     // Calculate overwrite range
     if (
       node &&
@@ -247,7 +363,9 @@ export class JSONCompletion {
         resolveTokenName(node.name, this.mode) as any,
       ) &&
       (isPropertyNameNode(getNodeAtPosition(ctx.state, ctx.pos), this.mode) ||
-        closestPropertyNameNode)
+        closestPropertyNameNode ||
+        rawWord.startsWith('"') ||
+        rawWord.startsWith("'"))
     ) {
       // don't suggest keys when the cursor is just before the opening curly brace
       if (node.from === ctx.pos) {
@@ -264,6 +382,22 @@ export class JSONCompletion {
         addValue,
         rawWord,
       );
+      if (
+        collector.completions.size === 0 &&
+        this.mode === MODES.JSON5 &&
+        (rawWord.startsWith("'") || rawWord.startsWith('"'))
+      ) {
+        const fallbackNode =
+          getClosestNode(node, TOKENS.OBJECT, this.mode) ?? node;
+        this.getPropertyCompletions(
+          rootSchema,
+          ctx,
+          fallbackNode,
+          collector,
+          true,
+          rawWord,
+        );
+      }
     } else {
       // proposals for values
       const types: { [type: string]: boolean } = {};
@@ -276,6 +410,46 @@ export class JSONCompletion {
         // // use the value node to calculate the prefix
         // prefix = res.valuePrefix;
         // debug.log("xxx", "using valueNode prefix", prefix);
+      }
+    }
+
+    if (
+      collector.completions.size === 0 &&
+      this.mode === MODES.JSON5 &&
+      (rawWord.startsWith("'") || rawWord.startsWith('"'))
+    ) {
+      const fallbackSchema = getStaticSchemaAtPointer(rootSchema, undefined);
+      if (fallbackSchema?.properties) {
+        Object.entries(fallbackSchema.properties).forEach(([key, value]) => {
+          if (typeof value !== "object" || value == null) {
+            return;
+          }
+          const description = value.description ?? "";
+          const type = value.type ?? "";
+          const typeStr =
+            value.$ref != null
+              ? ""
+              : Array.isArray(type)
+                ? type.toString()
+                : type;
+          const completion: Completion = {
+            label: key,
+            apply: this.getInsertTextForProperty(
+              key,
+              true,
+              rawWord,
+              rootSchema,
+              value,
+            ),
+            type: "property",
+            detail: typeStr,
+            info: () =>
+              el("div", {
+                inner: renderMarkdown(description),
+              }),
+          };
+          collector.add(this.applySnippetCompletion(completion));
+        });
       }
     }
 
@@ -943,6 +1117,9 @@ export class JSONCompletion {
     let subSchema = pointer
       ? schema.getNode(pointer, documentData ?? undefined).node?.schema
       : undefined;
+    if (!isRealSchema(subSchema)) {
+      subSchema = getStaticSchemaAtPointer(rootSchema, pointer);
+    }
     if (
       !pointerPointsToKnownProperty &&
       subSchema?.type === "null" &&
@@ -979,6 +1156,9 @@ export class JSONCompletion {
       subSchema = parentPointer
         ? schema.getNode(parentPointer).node?.schema
         : undefined;
+      if (!isRealSchema(subSchema)) {
+        subSchema = getStaticSchemaAtPointer(rootSchema, parentPointer);
+      }
       // TODO should probably only change pointer if it actually found a schema there, but i left it as-is
       pointer = parentPointer;
     }

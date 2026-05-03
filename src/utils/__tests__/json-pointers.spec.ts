@@ -224,7 +224,7 @@ boop:
       mode: MODES.YAML,
       expected: {
         "": {
-          keyFrom: 4,
+          keyFrom: 3,
           keyTo: 75,
         },
         "/bar": {
@@ -253,7 +253,7 @@ boop:
           valueTo: 75,
         },
         "/boop/0": {
-          keyFrom: 66,
+          keyFrom: 65,
           keyTo: 75,
         },
         "/boop/0/foo": {
@@ -263,7 +263,7 @@ boop:
           valueTo: 75,
         },
         "/object": {
-          keyFrom: 14,
+          keyFrom: 11,
           keyTo: 23,
         },
         "/object/foo": {

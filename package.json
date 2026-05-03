@@ -1,5 +1,5 @@
 {
-  "name": "codemirror-json-schema",
+  "name": "codemirror-json-schema-refined",
   "license": "MIT",
   "version": "0.8.3",
   "description": "Codemirror 6 extensions that provide full JSONSchema support for `@codemirror/lang-json` and `codemirror-json5`",
@@ -11,6 +11,10 @@
     {
       "name": "Rikki Schulte",
       "url": "https://rikki.dev"
+    },
+    {
+      "name": "yusing",
+      "url": "https://github.com/yusing"
     }
   ],
   "keywords": [
@@ -23,7 +27,7 @@
     "editor"
   ],
   "type": "module",
-  "packageManager": "bun@1.3.2",
+  "packageManager": "bun@1.3.13",
   "types": "dist/index.d.ts",
   "module": "dist/index.js",
   "main": "cjs/index.js",
@@ -54,7 +58,7 @@
       "default": "./cjs/yaml/index.js"
     }
   },
-  "repository": "github:acao/codemirror-json-schema",
+  "repository": "github:yusing/codemirror-json-schema",
   "homepage": "https://codemirror-json-schema.netlify.app/",
   "dependencies": {
     "@sagold/json-pointer": "^7.2.1",

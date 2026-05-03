@@ -1,14 +1,14 @@
-[**codemirror-json-schema**](../README.md)
+[**codemirror-json-schema-refined**](../README.md)
 
 ---
 
-[codemirror-json-schema](../README.md) / HoverOptions
+[codemirror-json-schema-refined](../README.md) / HoverOptions
 
 # Type Alias: HoverOptions
 
 > **HoverOptions** = `object`
 
-Defined in: [src/features/hover.ts:25](https://github.com/yusing/codemirror-json-schema/blob/fb45409b68ffa7d8448a92d2119035f373bcab3d/src/features/hover.ts#L25)
+Defined in: [src/features/hover.ts:25](https://github.com/yusing/codemirror-json-schema/blob/1bcfccbf157424c333bf9dd63b734986b72eff1a/src/features/hover.ts#L25)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [src/features/hover.ts:25](https://github.com/yusing/codemirror-json
 
 > `optional` **formatHover?**: (`data`) => `HTMLElement`
 
-Defined in: [src/features/hover.ts:34](https://github.com/yusing/codemirror-json-schema/blob/fb45409b68ffa7d8448a92d2119035f373bcab3d/src/features/hover.ts#L34)
+Defined in: [src/features/hover.ts:34](https://github.com/yusing/codemirror-json-schema/blob/1bcfccbf157424c333bf9dd63b734986b72eff1a/src/features/hover.ts#L34)
 
 Generate the hover tooltip HTML
 
@@ -36,7 +36,7 @@ Generate the hover tooltip HTML
 
 > `optional` **getHoverTexts?**: (`data`) => `HoverTexts`
 
-Defined in: [src/features/hover.ts:30](https://github.com/yusing/codemirror-json-schema/blob/fb45409b68ffa7d8448a92d2119035f373bcab3d/src/features/hover.ts#L30)
+Defined in: [src/features/hover.ts:30](https://github.com/yusing/codemirror-json-schema/blob/1bcfccbf157424c333bf9dd63b734986b72eff1a/src/features/hover.ts#L30)
 
 Generate the text to display in the hover tooltip
 
@@ -56,7 +56,7 @@ Generate the text to display in the hover tooltip
 
 > `optional` **mode?**: `JSONMode`
 
-Defined in: [src/features/hover.ts:26](https://github.com/yusing/codemirror-json-schema/blob/fb45409b68ffa7d8448a92d2119035f373bcab3d/src/features/hover.ts#L26)
+Defined in: [src/features/hover.ts:26](https://github.com/yusing/codemirror-json-schema/blob/1bcfccbf157424c333bf9dd63b734986b72eff1a/src/features/hover.ts#L26)
 
 ---
 
@@ -64,7 +64,7 @@ Defined in: [src/features/hover.ts:26](https://github.com/yusing/codemirror-json
 
 > `optional` **parser?**: (`text`) => `any`
 
-Defined in: [src/features/hover.ts:39](https://github.com/yusing/codemirror-json-schema/blob/fb45409b68ffa7d8448a92d2119035f373bcab3d/src/features/hover.ts#L39)
+Defined in: [src/features/hover.ts:39](https://github.com/yusing/codemirror-json-schema/blob/1bcfccbf157424c333bf9dd63b734986b72eff1a/src/features/hover.ts#L39)
 
 Provide a custom parser for the document
 

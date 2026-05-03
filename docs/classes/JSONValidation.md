@@ -1,12 +1,12 @@
-[**codemirror-json-schema**](../README.md)
+[**codemirror-json-schema-refined**](../README.md)
 
 ---
 
-[codemirror-json-schema](../README.md) / JSONValidation
+[codemirror-json-schema-refined](../README.md) / JSONValidation
 
 # Class: JSONValidation
 
-Defined in: [src/features/validation.ts:73](https://github.com/yusing/codemirror-json-schema/blob/fb45409b68ffa7d8448a92d2119035f373bcab3d/src/features/validation.ts#L73)
+Defined in: [src/features/validation.ts:73](https://github.com/yusing/codemirror-json-schema/blob/1bcfccbf157424c333bf9dd63b734986b72eff1a/src/features/validation.ts#L73)
 
 ## Constructors
 
@@ -14,7 +14,7 @@ Defined in: [src/features/validation.ts:73](https://github.com/yusing/codemirror
 
 > **new JSONValidation**(`options?`): `JSONValidation`
 
-Defined in: [src/features/validation.ts:78](https://github.com/yusing/codemirror-json-schema/blob/fb45409b68ffa7d8448a92d2119035f373bcab3d/src/features/validation.ts#L78)
+Defined in: [src/features/validation.ts:78](https://github.com/yusing/codemirror-json-schema/blob/1bcfccbf157424c333bf9dd63b734986b72eff1a/src/features/validation.ts#L78)
 
 #### Parameters
 
@@ -32,7 +32,7 @@ Defined in: [src/features/validation.ts:78](https://github.com/yusing/codemirror
 
 > **doValidation**(`view`): `Diagnostic`[]
 
-Defined in: [src/features/validation.ts:129](https://github.com/yusing/codemirror-json-schema/blob/fb45409b68ffa7d8448a92d2119035f373bcab3d/src/features/validation.ts#L129)
+Defined in: [src/features/validation.ts:129](https://github.com/yusing/codemirror-json-schema/blob/1bcfccbf157424c333bf9dd63b734986b72eff1a/src/features/validation.ts#L129)
 
 #### Parameters
 

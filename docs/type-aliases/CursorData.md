@@ -1,14 +1,14 @@
-[**codemirror-json-schema**](../README.md)
+[**codemirror-json-schema-refined**](../README.md)
 
 ---
 
-[codemirror-json-schema](../README.md) / CursorData
+[codemirror-json-schema-refined](../README.md) / CursorData
 
 # Type Alias: CursorData
 
 > **CursorData** = `object`
 
-Defined in: [src/features/hover.ts:19](https://github.com/yusing/codemirror-json-schema/blob/fb45409b68ffa7d8448a92d2119035f373bcab3d/src/features/hover.ts#L19)
+Defined in: [src/features/hover.ts:19](https://github.com/yusing/codemirror-json-schema/blob/1bcfccbf157424c333bf9dd63b734986b72eff1a/src/features/hover.ts#L19)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [src/features/hover.ts:19](https://github.com/yusing/codemirror-json
 
 > **pointer**: `string`
 
-Defined in: [src/features/hover.ts:19](https://github.com/yusing/codemirror-json-schema/blob/fb45409b68ffa7d8448a92d2119035f373bcab3d/src/features/hover.ts#L19)
+Defined in: [src/features/hover.ts:19](https://github.com/yusing/codemirror-json-schema/blob/1bcfccbf157424c333bf9dd63b734986b72eff1a/src/features/hover.ts#L19)
 
 ---
 
@@ -24,4 +24,4 @@ Defined in: [src/features/hover.ts:19](https://github.com/yusing/codemirror-json
 
 > `optional` **schema?**: `JsonSchema`
 
-Defined in: [src/features/hover.ts:19](https://github.com/yusing/codemirror-json-schema/blob/fb45409b68ffa7d8448a92d2119035f373bcab3d/src/features/hover.ts#L19)
+Defined in: [src/features/hover.ts:19](https://github.com/yusing/codemirror-json-schema/blob/1bcfccbf157424c333bf9dd63b734986b72eff1a/src/features/hover.ts#L19)

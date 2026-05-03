@@ -1,11 +1,11 @@
-[**codemirror-json-schema**](../README.md)
+[**codemirror-json-schema-refined**](../README.md)
 
 ---
 
-[codemirror-json-schema](../README.md) / JSONPointersMap
+[codemirror-json-schema-refined](../README.md) / JSONPointersMap
 
 # Type Alias: JSONPointersMap
 
 > **JSONPointersMap** = `Map`\<`string`, [`JSONPointerData`](JSONPointerData.md) \| [`JSONPartialPointerData`](JSONPartialPointerData.md)\>
 
-Defined in: [src/types.ts:20](https://github.com/yusing/codemirror-json-schema/blob/fb45409b68ffa7d8448a92d2119035f373bcab3d/src/types.ts#L20)
+Defined in: [src/types.ts:20](https://github.com/yusing/codemirror-json-schema/blob/1bcfccbf157424c333bf9dd63b734986b72eff1a/src/types.ts#L20)

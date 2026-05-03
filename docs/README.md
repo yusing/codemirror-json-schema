@@ -1,8 +1,8 @@
-**codemirror-json-schema**
+**codemirror-json-schema-refined**
 
 ---
 
-# codemirror-json-schema
+# codemirror-json-schema-refined
 
 ## Bundled Codemirror Extensions
 

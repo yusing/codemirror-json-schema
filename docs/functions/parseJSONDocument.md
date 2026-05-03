@@ -1,14 +1,14 @@
-[**codemirror-json-schema**](../README.md)
+[**codemirror-json-schema-refined**](../README.md)
 
 ---
 
-[codemirror-json-schema](../README.md) / parseJSONDocument
+[codemirror-json-schema-refined](../README.md) / parseJSONDocument
 
 # Function: parseJSONDocument()
 
 > **parseJSONDocument**(`jsonString`): `object`
 
-Defined in: [src/parsers/json-parser.ts:29](https://github.com/yusing/codemirror-json-schema/blob/fb45409b68ffa7d8448a92d2119035f373bcab3d/src/parsers/json-parser.ts#L29)
+Defined in: [src/parsers/json-parser.ts:29](https://github.com/yusing/codemirror-json-schema/blob/1bcfccbf157424c333bf9dd63b734986b72eff1a/src/parsers/json-parser.ts#L29)
 
 Mimics the behavior of `json-source-map`'s `parseJSONDocument` function using codemirror EditorState
 

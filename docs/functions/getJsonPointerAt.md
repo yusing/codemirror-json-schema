@@ -1,14 +1,14 @@
-[**codemirror-json-schema**](../README.md)
+[**codemirror-json-schema-refined**](../README.md)
 
 ---
 
-[codemirror-json-schema](../README.md) / getJsonPointerAt
+[codemirror-json-schema-refined](../README.md) / getJsonPointerAt
 
 # Function: getJsonPointerAt()
 
 > **getJsonPointerAt**(`docText`, `node`, `mode`): `string`
 
-Defined in: [src/utils/json-pointers.ts:31](https://github.com/yusing/codemirror-json-schema/blob/fb45409b68ffa7d8448a92d2119035f373bcab3d/src/utils/json-pointers.ts#L31)
+Defined in: [src/utils/json-pointers.ts:31](https://github.com/yusing/codemirror-json-schema/blob/1bcfccbf157424c333bf9dd63b734986b72eff1a/src/utils/json-pointers.ts#L31)
 
 ## Parameters
 

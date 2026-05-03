@@ -1,14 +1,14 @@
-[**codemirror-json-schema**](../README.md)
+[**codemirror-json-schema-refined**](../README.md)
 
 ---
 
-[codemirror-json-schema](../README.md) / getJSONSchema
+[codemirror-json-schema-refined](../README.md) / getJSONSchema
 
 # Function: getJSONSchema()
 
 > **getJSONSchema**(`state`): `void` \| `JSONSchema7`
 
-Defined in: [src/features/state.ts:25](https://github.com/yusing/codemirror-json-schema/blob/fb45409b68ffa7d8448a92d2119035f373bcab3d/src/features/state.ts#L25)
+Defined in: [src/features/state.ts:25](https://github.com/yusing/codemirror-json-schema/blob/1bcfccbf157424c333bf9dd63b734986b72eff1a/src/features/state.ts#L25)
 
 ## Parameters
 

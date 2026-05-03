@@ -1,12 +1,12 @@
-[**codemirror-json-schema**](../README.md)
+[**codemirror-json-schema-refined**](../README.md)
 
 ---
 
-[codemirror-json-schema](../README.md) / JSONCompletion
+[codemirror-json-schema-refined](../README.md) / JSONCompletion
 
 # Class: JSONCompletion
 
-Defined in: [src/features/completion.ts:183](https://github.com/yusing/codemirror-json-schema/blob/fb45409b68ffa7d8448a92d2119035f373bcab3d/src/features/completion.ts#L183)
+Defined in: [src/features/completion.ts:183](https://github.com/yusing/codemirror-json-schema/blob/1bcfccbf157424c333bf9dd63b734986b72eff1a/src/features/completion.ts#L183)
 
 ## Constructors
 
@@ -14,7 +14,7 @@ Defined in: [src/features/completion.ts:183](https://github.com/yusing/codemirro
 
 > **new JSONCompletion**(`opts`): `JSONCompletion`
 
-Defined in: [src/features/completion.ts:199](https://github.com/yusing/codemirror-json-schema/blob/fb45409b68ffa7d8448a92d2119035f373bcab3d/src/features/completion.ts#L199)
+Defined in: [src/features/completion.ts:199](https://github.com/yusing/codemirror-json-schema/blob/1bcfccbf157424c333bf9dd63b734986b72eff1a/src/features/completion.ts#L199)
 
 #### Parameters
 
@@ -32,7 +32,7 @@ Defined in: [src/features/completion.ts:199](https://github.com/yusing/codemirro
 
 > **doComplete**(`ctx`): `never`[] \| `CompletionResult`
 
-Defined in: [src/features/completion.ts:204](https://github.com/yusing/codemirror-json-schema/blob/fb45409b68ffa7d8448a92d2119035f373bcab3d/src/features/completion.ts#L204)
+Defined in: [src/features/completion.ts:204](https://github.com/yusing/codemirror-json-schema/blob/1bcfccbf157424c333bf9dd63b734986b72eff1a/src/features/completion.ts#L204)
 
 #### Parameters
 

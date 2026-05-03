@@ -1,14 +1,14 @@
-[**codemirror-json-schema**](../README.md)
+[**codemirror-json-schema-refined**](../README.md)
 
 ---
 
-[codemirror-json-schema](../README.md) / JSONPartialPointerData
+[codemirror-json-schema-refined](../README.md) / JSONPartialPointerData
 
 # Type Alias: JSONPartialPointerData
 
 > **JSONPartialPointerData** = `object`
 
-Defined in: [src/types.ts:6](https://github.com/yusing/codemirror-json-schema/blob/fb45409b68ffa7d8448a92d2119035f373bcab3d/src/types.ts#L6)
+Defined in: [src/types.ts:6](https://github.com/yusing/codemirror-json-schema/blob/1bcfccbf157424c333bf9dd63b734986b72eff1a/src/types.ts#L6)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [src/types.ts:6](https://github.com/yusing/codemirror-json-schema/bl
 
 > **keyFrom**: `number`
 
-Defined in: [src/types.ts:7](https://github.com/yusing/codemirror-json-schema/blob/fb45409b68ffa7d8448a92d2119035f373bcab3d/src/types.ts#L7)
+Defined in: [src/types.ts:7](https://github.com/yusing/codemirror-json-schema/blob/1bcfccbf157424c333bf9dd63b734986b72eff1a/src/types.ts#L7)
 
 ---
 
@@ -24,4 +24,4 @@ Defined in: [src/types.ts:7](https://github.com/yusing/codemirror-json-schema/bl
 
 > **keyTo**: `number`
 
-Defined in: [src/types.ts:8](https://github.com/yusing/codemirror-json-schema/blob/fb45409b68ffa7d8448a92d2119035f373bcab3d/src/types.ts#L8)
+Defined in: [src/types.ts:8](https://github.com/yusing/codemirror-json-schema/blob/1bcfccbf157424c333bf9dd63b734986b72eff1a/src/types.ts#L8)
